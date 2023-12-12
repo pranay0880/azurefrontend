@@ -1,6 +1,5 @@
-import React from "react";
-import btoa from "btoa-lite";
-import { encode } from "base-64";
+import React, { useEffect, useState } from "react";
+
 import {
   Box,
   Typography,
@@ -10,70 +9,34 @@ import {
   IconButton,
 } from "@mui/material";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
-
 import EditIcon from "@mui/icons-material/Edit";
-
-import { useSelector } from "react-redux";
-
 import { useNavigate } from "react-router-dom";
-
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const EmployeeDetails = () => {
   const navigate = useNavigate();
 
+  const [employeeData, setEmpbsId] = useState([]);
   const { id } = useParams();
-  const empDetails = useSelector((state) => state.employees);
-  const empployeeDetailsA = empDetails.employees;
-  //console.log(empployeeDetailsA);
 
-  const employeeDatas = empployeeDetailsA.filter(
-    (emp) => emp.employee_id === id
-  );
+  useEffect(() => {
+    employeeView();
+  }, []);
 
-  var image = "";
+  const employeeView = async () => {
+    const response = await axios.get(
+      `http://192.168.0.108:5000/api/v1/employee/${id}`
+    );
+    console.log(response);
 
-  const employeeData = employeeDatas[0];
+    const singleemployee = response.data;
+
+    setEmpbsId(singleemployee);
+  };
 
   const { date_of_hire, date_of_birth, profile_image } = employeeData;
-  //console.log(profile_image, profile_image.data, profile_image.data.length);
-
-  const bufferData = { type: "Buffer", data: [profile_image] };
-  const dataArray = [profile_image.data];
-
-  // Convert the Buffer object or numeric array to a Uint8Array
-  const uint8ArrayFromBuffer = new Uint8Array(bufferData.data);
-  const uint8ArrayFromArray = new Uint8Array(dataArray);
-  console.log(uint8ArrayFromBuffer);
-
-  // Convert the Uint8Array to a base64-encoded string
-  const base64FromBuffer = btoa(
-    String.fromCharCode.apply(null, uint8ArrayFromBuffer)
-  );
-  const base64FromArray = btoa(
-    String.fromCharCode.apply(null, uint8ArrayFromArray)
-  );
-
-  // Display or use the base64-encoded string
-  // console.log(base64FromBuffer);
-  // console.log(base64FromArray);
-
-  const convertBufferToImage = () => {
-    if (uint8ArrayFromBuffer.length > 0) {
-      const uint8Array = new Uint8Array(profile_image);
-      console.log(uint8Array);
-      // Convert Uint8Array to Base64
-      const base64Image = btoa(String.fromCharCode.apply(null, uint8Array));
-      console.log(base64Image);
-
-      //Set the Base64 string as the image source
-      image = `data:image/png;base64,${base64Image}`;
-    } else {
-      console.log("Buffer is empty or undefined.");
-    }
-  };
-  convertBufferToImage();
-
+  console.log(profile_image);
   const dateOfHire = new Date(date_of_hire);
   const dateOfBirth = new Date(date_of_birth);
 
@@ -106,19 +69,18 @@ const EmployeeDetails = () => {
               justifyContent: "space-between",
             }}
           >
-            <Grid sx={{ display: "flex" }}>
+            <Grid sx={{ display: "flex" }} key={id}>
               <Avatar
-                src={base64FromBuffer}
-                sx={{
-                  height: "110px",
-                  width: "100px",
-                  marginRight: "20px",
-                  borderRadius: "10px",
-                }}
-                alt="profileImage"
                 variant="square"
+                alt="Remy Sharp"
+                src={profile_image}
+                sx={{
+                  height: "120px",
+                  width: "120px",
+                  marginRight: "16px",
+                  borderRadius: "5px",
+                }}
               />
-
               <Box sx={{ marginBottom: "50px" }}>
                 <Typography variant="h6" sx={{ fontWeight: "bold", pb: "6px" }}>
                   {employeeData.full_name}

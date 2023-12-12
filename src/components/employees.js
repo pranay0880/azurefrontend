@@ -53,7 +53,7 @@ const Employees = () => {
 
   useEffect(() => {
     getEmployeeDetails();
-  });
+  }, []);
 
   return (
     <Box
@@ -83,7 +83,7 @@ const Employees = () => {
               {userData.map((row) => (
                 <TableRow
                   key={row.employee_id}
-                  onClick={() => navigate(`/userDetails/${row.employee_id}`)}
+                  onClick={() => navigate(`/employee/${row.employee_id}`)}
                   scope="row"
                   sx={{
                     cursor: "pointer",
