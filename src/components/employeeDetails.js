@@ -250,7 +250,7 @@ const EmployeeDetails = () => {
                 Address{" "}
               </Typography>
               <Typography mr={1}>:</Typography>
-              <Typography variant="span">{employeeData.address}</Typography>
+              <Typography variant="span"> {employeeData.address}</Typography>
             </Grid>
             <Grid container sx={{ display: "flex" }} mt={1}>
               <Typography variant="body" sx={{ width: "200px" }}>
