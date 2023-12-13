@@ -53,6 +53,7 @@ const Employees = () => {
 
   useEffect(() => {
     getEmployeeDetails();
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -99,7 +100,7 @@ const Employees = () => {
                     {row.employee_id}
                   </TableCell>
                   <TableCell align="left">{row.full_name}</TableCell>
-                  <TableCell align="left">{row.email}</TableCell>
+                  <TableCell align="left">{row.employee_email}</TableCell>
                   <TableCell align="left">{row.job_title}</TableCell>
                   <TableCell align="left">AapmorTechnologies</TableCell>
                 </TableRow>

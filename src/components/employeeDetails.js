@@ -22,21 +22,21 @@ const EmployeeDetails = () => {
 
   useEffect(() => {
     employeeView();
+    // eslint-disable-next-line
   }, []);
 
   const employeeView = async () => {
     const response = await axios.get(
-      `http://192.168.0.108:5000/api/v1/employee/${id}`
+      `http://localhost:5000/api/v1/employee/${id}`
     );
-    console.log(response);
-
+    // console.log(response);
     const singleemployee = response.data;
-
     setEmpbsId(singleemployee);
   };
+  const x = employeeData.emergency_details;
+  console.log(x);
 
   const { date_of_hire, date_of_birth, profile_image } = employeeData;
-  console.log(profile_image);
   const dateOfHire = new Date(date_of_hire);
   const dateOfBirth = new Date(date_of_birth);
 
@@ -55,7 +55,7 @@ const EmployeeDetails = () => {
   )}, ${dateOfHire.getFullYear()}`;
 
   return (
-    <Grid sx={{ padding: "30px", fontFamily: "Cambria" }}>
+    <Grid sx={{ padding: "30px" }}>
       <Grid sx={{ display: "flex" }}>
         <Grid>
           <Box
@@ -157,131 +157,123 @@ const EmployeeDetails = () => {
               <Typography variant="span" sx={{ width: "200px" }}>
                 EmployeeId{" "}
               </Typography>
-              <Typography sx={{ marginRight: "15px" }}>:</Typography>
+              <Typography mr={1}>:</Typography>
 
               <Typography variant="span">{employeeData.employee_id}</Typography>
             </Grid>
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
+            <Grid sx={{ display: "flex" }} mt={1}>
               <Typography variant="body" sx={{ width: "200px" }}>
                 Gender{" "}
               </Typography>
-              <Typography sx={{ marginRight: "15px" }}>:</Typography>
+              <Typography mr={1}>:</Typography>
               <Typography variant="span"> {employeeData.gender}</Typography>
             </Grid>
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
+            <Grid sx={{ display: "flex" }} mt={1}>
               <Typography variant="body" sx={{ width: "200px" }}>
                 DOB{" "}
               </Typography>
-              <Typography sx={{ marginRight: "15px" }}>:</Typography>
+              <Typography mr={1}>:</Typography>
               <Typography variant="span">{dateObjectBirth}</Typography>
             </Grid>
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
+            <Grid sx={{ display: "flex" }} mt={1}>
               <Typography variant="body" sx={{ width: "200px" }}>
                 DateOfHire{" "}
               </Typography>
-              <Typography sx={{ marginRight: "15px" }}>:</Typography>
+              <Typography mr={1}>:</Typography>
               <Typography variant="span">{dateObject}</Typography>
             </Grid>
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
+            <Grid sx={{ display: "flex" }} mt={1}>
               <Typography variant="body" sx={{ width: "200px" }}>
                 Marital status{" "}
               </Typography>
-              <Typography sx={{ marginRight: "15px" }}>:</Typography>
+              <Typography mr={1}>:</Typography>
 
               <Typography variant="span">
                 {employeeData.marital_status}
               </Typography>
             </Grid>
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
+            <Grid sx={{ display: "flex" }} mt={1}>
               <Typography variant="body" sx={{ width: "200px" }}>
                 Employment Type{" "}
               </Typography>
-              <Typography sx={{ marginRight: "15px" }}>:</Typography>
+              <Typography mr={1}>:</Typography>
               <Typography variant="span"> Fulltime</Typography>
             </Grid>
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
+            <Grid sx={{ display: "flex" }} mt={1}>
               <Typography variant="body" sx={{ width: "200px" }}>
                 Laptop{" "}
               </Typography>
-              <Typography sx={{ marginRight: "15px" }}>:</Typography>
+              <Typography mr={1}>:</Typography>
               <Typography variant="span">{employeeData.laptop_name}</Typography>
             </Grid>
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
+            <Grid sx={{ display: "flex" }} mt={1}>
               <Typography variant="body" sx={{ width: "200px" }}>
                 Laptop Serial No{" "}
               </Typography>
-              <Typography sx={{ marginRight: "15px" }}>:</Typography>
+              <Typography mr={1}>:</Typography>
               <Typography variant="span">
                 {employeeData.laptop_serial_no}
               </Typography>
             </Grid>
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
+            <Grid sx={{ display: "flex" }} mt={1}>
               <Typography variant="body" sx={{ width: "200px" }}>
                 Department{" "}
               </Typography>
-              <Typography sx={{ marginRight: "15px" }}>:</Typography>
+              <Typography mr={1}>:</Typography>
               <Typography variant="span"> Information Technology</Typography>
             </Grid>
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
+            <Grid sx={{ display: "flex" }} mt={1}>
               <Typography variant="body" sx={{ width: "200px" }}>
                 Manager{" "}
               </Typography>
               <Typography sx={{ marginRight: "15px" }}>:</Typography>
               <Typography variant="span">{employeeData.supervisor}</Typography>
             </Grid>
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
+            <Grid sx={{ display: "flex" }} mt={1}>
               <Typography variant="body" sx={{ width: "200px" }}>
                 Work Location{" "}
               </Typography>
-              <Typography sx={{ marginRight: "15px" }}>:</Typography>
+              <Typography mr={1}>:</Typography>
               <Typography variant="span">
                 {employeeData.work_location}
               </Typography>
             </Grid>
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
+            <Grid sx={{ display: "flex" }} mt={1}>
               <Typography variant="body" sx={{ width: "200px" }}>
                 Blood Group{" "}
               </Typography>
               <Typography sx={{ marginRight: "15px" }}>:</Typography>
               <Typography variant="span"> A+</Typography>
             </Grid>
-
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
-              <Typography variant="body" sx={{ width: "200px" }}>
-                Emergency Person{" "}
-              </Typography>
-              <Typography sx={{ marginRight: "15px" }}>:</Typography>
-              <Typography variant="span">
-                {employeeData.emergency_contact_name}
-              </Typography>
-            </Grid>
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
-              <Typography variant="body" sx={{ width: "200px" }}>
-                Emergency Relation{" "}
-              </Typography>
-              <Typography sx={{ marginRight: "15px" }}>:</Typography>
-              <Typography variant="span">
-                {employeeData.emergency_relation}
-              </Typography>
-            </Grid>
-
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
-              <Typography variant="body" sx={{ width: "200px" }}>
-                Emergency PhoneNumber{" "}
-              </Typography>
-              <Typography sx={{ marginRight: "15px" }}>:</Typography>
-              <Typography variant="span">
-                {employeeData.emergency_phone_number}
-              </Typography>
-            </Grid>
-            <Grid sx={{ display: "flex", marginTop: "6px" }}>
+            <Grid sx={{ display: "flex" }} mt={1}>
               <Typography variant="body" sx={{ width: "200px" }}>
                 Address{" "}
               </Typography>
-              <Typography sx={{ marginRight: "15px" }}>:</Typography>
-              <Typography variant="span" sx={{ width: "200px" }}>
-                {employeeData.address}
+              <Typography mr={1}>:</Typography>
+              <Typography variant="span">{employeeData.address}</Typography>
+            </Grid>
+            <Grid container sx={{ display: "flex" }} mt={1}>
+              <Typography variant="body" sx={{ width: "200px" }}>
+                Emergency Details{" "}
               </Typography>
+              {employeeData.emergency_details
+                ? employeeData.emergency_details.map((each, index) => (
+                    <Grid container key={index} mt={1}>
+                      <Typography
+                        variant="body"
+                        sx={{ width: "180px", marginLeft: "100px" }}
+                      >
+                        Name : {each.name}
+                      </Typography>
+                      <Typography variant="body" sx={{ width: "250px" }}>
+                        Phone Number : {each.phoneNo}
+                      </Typography>
+                      <Typography variant="body">
+                        Relation : {each.relation}
+                      </Typography>
+                    </Grid>
+                  ))
+                : null}
             </Grid>
           </Grid>
         </Grid>
